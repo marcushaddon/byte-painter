@@ -1,0 +1,14 @@
+{
+  "name": "paintbytes",
+  "version": "1.0.0",
+  "description": "Coding assignment for Coder",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Marcus Haddon",
+  "license": "ISC",
+  "dependencies": {
+    "ts-loader": "^4.4.1"
+  }
+}
