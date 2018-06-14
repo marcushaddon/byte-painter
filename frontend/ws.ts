@@ -1,12 +1,18 @@
 import Painter from './painter';
-import data from './mockrandomdata';
+import makeData from './mockrandomdata';
+
+var TextEncoder: any;
 
 function log_(msg: any) {
   document.getElementById('log').textContent += msg + '\n';
 }
 
 function draw() {
+  const canvas = document.querySelector('canvas');
+  const painter = new Painter(canvas);
+
   var ws = new WebSocket('ws://localhost:8080/');
+  ws.binaryType = 'arraybuffer';
   ws.onopen = function() {
     log_('CONNECT');
   };
@@ -14,12 +20,13 @@ function draw() {
     log_('DISCONNECT');
   };
   ws.onmessage = function(event) {
-    log_('MESSAGE: ' + typeof event.data);
+    // Maybe we don't need to clamp it?
+    painter.process(event.data);
+    painter.commit();
+
+    
   };
 
-
-  // Draw on canvas
-  const canvas = document.querySelector('canvas');
 
 
 }
@@ -28,11 +35,11 @@ function setup() {
     document.querySelector('#trigger')
     .addEventListener('click', draw);
 
-    const canvas = document.querySelector('canvas');
-    const painter = new Painter(canvas);
+    
 
-    painter.process(data);
-    painter.commit();
+    const data = makeData(1000);
+    
+
 }
 
 document.addEventListener('DOMContentLoaded', setup);
