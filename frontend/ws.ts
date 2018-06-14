@@ -28,9 +28,6 @@ function setup() {
   canvas = document.querySelector('canvas');
   painter = new Painter(canvas);
 
-  const data = makeData(10000);
-  painter.process(data);
-  painter.commit();
 }
 
 document.addEventListener('DOMContentLoaded', setup);
