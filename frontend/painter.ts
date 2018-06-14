@@ -11,28 +11,25 @@ export default class Painter {
   private _currentChannel: number;
 
   constructor(private _canvas: HTMLCanvasElement) {
-    // number pixels x 4 uints for each channel
     this._canvasContext = this._canvas.getContext('2d');
 
     this._width = this._canvas.width;
     this._height = this._canvas.height;
+
+    // number pixels x 4 uints for each channel
     this._numChannels = this._width * this._height * 4;
-
-    let size = this._width * this._height;
+    
     this._imgData = this._canvasContext.getImageData(0,0, this._width, this._height);
-    this._currentChannel = 0;
-  }
 
-  private _setPixel(pixelNo: number, color: number[]): void {
-    [ this._imgData.data[pixelNo],
-    this._imgData.data[pixelNo + 1],
-    this._imgData.data[pixelNo + 2] ] = color;
+    this._currentChannel = 0;
   }
 
   process(newData: Uint8ClampedArray): void {
     const data = this._imgData.data;
     for (let i = 0, length = newData.length; i < length; i++) {
       let byte = newData[i];
+
+      // ex: 1101... = [true, true, false, true,...]
       let setBits: boolean[] = checkBits(byte);
 
       for (let setBit of setBits) {
