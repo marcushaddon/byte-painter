@@ -1,5 +1,9 @@
 # byte-painter
 
+## Prerequisites
+1. websocketd
+2. Optional: Node/npm (if you want to launch it via npm)
+
 ## Installation
 1. `$ git clone <this repo>`
 2. `$ npm run start`
