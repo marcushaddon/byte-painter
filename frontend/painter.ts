@@ -25,7 +25,9 @@ export default class Painter {
   }
 
   process(newData: Uint8ClampedArray): void {
+    // Update our immgData with the contents of the incoming data.
     const data = this._imgData.data;
+
     for (let i = 0, length = newData.length; i < length; i++) {
       let byte = newData[i];
 
@@ -33,8 +35,6 @@ export default class Painter {
       let setBits: boolean[] = checkBits(byte);
 
       for (let setBit of setBits) {
-        
-        // TODO: COMMENT THIS!
         [
           data[this._currentChannel],
           data[this._currentChannel + 1],
@@ -49,6 +49,7 @@ export default class Painter {
   }
 
   commit(): void {
+    // Update the canvas with the current contents of our image data.
     this._canvasContext.putImageData(this._imgData, 0, 0);
   }
 
