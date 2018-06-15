@@ -6,7 +6,8 @@
 
 ## Installation
 1. `$ git clone <this repo>`
-2. `$ npm run start`
+2. `cd byte-painter`
+3. `$ npm run start`
 OR 
 3. `$ ./startup.sh`
 4. Copy and paste the URL provided into the browser of your choice, and click 'Paint'!
