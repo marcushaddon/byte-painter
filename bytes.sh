@@ -1,5 +1,5 @@
 #!/bin/bash
 
-# Read the first 100 lines from urandom, breaking every 100 bytes.
-cat /dev/urandom | fold -w 100 | head -n 100
+# Read the first 10000 chars (bytes) from /dev/urandom
+head -c 10000 /dev/urandom
 

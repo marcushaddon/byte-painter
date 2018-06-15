@@ -13,12 +13,10 @@ function draw() {
 
   ws.onmessage = function(event) {
     const uint8arr = new Uint8Array(event.data);
+    console.log('BYTE LENGTH:', uint8arr.byteLength);
     painter.process(uint8arr);
     painter.commit();
   };
-
-
-
 }
 
 function setup() {
@@ -27,7 +25,6 @@ function setup() {
 
   canvas = document.querySelector('canvas');
   painter = new Painter(canvas);
-
 }
 
 document.addEventListener('DOMContentLoaded', setup);
